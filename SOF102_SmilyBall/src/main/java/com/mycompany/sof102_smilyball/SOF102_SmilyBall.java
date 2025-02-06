@@ -15,5 +15,6 @@ public class SOF102_SmilyBall {
         System.out.println("Tran Ngoc Long");
         System.out.println("hihi");
         System.out.println("trotlung");
+        System.out.println("Ngoc Dee cute pho mai que");
     }
 }
