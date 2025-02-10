@@ -4,6 +4,10 @@
  */
 package View;
 
+import com.mycompany.sof102_smilyball.User;
+import com.mycompany.sof102_smilyball.UserDAL;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PC
@@ -41,8 +45,18 @@ public class DangNhapJDia extends javax.swing.JDialog {
         jLabel2.setText("Mật khẩu");
 
         jButton1.setText("Thoát");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Đăng nhập");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +98,36 @@ public class DangNhapJDia extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if(jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập không được để trống");
+            return;
+        }
+        if(jTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập không được để trống");
+            return;
+        }
+        UserDAL userdal=new UserDAL();
+        try {
+            User user = userdal.checkLogin(jTextField1.getText(), jTextField2.getText());
+            if(user==null){
+                JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu sai");
+            }
+            else{
+                this.dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
